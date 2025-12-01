@@ -1,0 +1,76 @@
+---
+gods:
+    - 82.209.195.19
+    - 82.209.194.62
+    - 178.124.187.77
+    - 82.209.194.15
+    - 128.140.43.219
+    - 127.0.0.1
+    - 188.245.189.2
+    - ::1
+URL:
+    1flights: 1flights.com
+    billige-fluege: billige-fluege.de
+    bluecoco: bluecoco.ai
+    budgetfares: budgetfares.com
+    dovolenkovelety: dovolenkovelety.cz
+    flightdiscount: flightdiscount.com
+    flightmunk: flightmunk.com
+    flybilligere: flybilligere.no
+    flygbilligare: flygbilligare.se
+    globaltravel: globaltravel.com
+    gomulticity: gomulticity.com
+    hotelshop: hotelshop.com
+    lotywakacyjne: lotywakacyjne.pl
+    matkaat: matkaat.fi
+    militaryfares: militaryfares.com
+    militarytravelers: militarytravelers.com
+    mitfly: mitfly.dk
+    packundflieg: packundflieg.de
+    skyholidays: skyholidays.com
+    smartfaresvacations: smartfaresvacations.com
+    usflydrive: usflydrive.com
+    utazasmester: utazasmester.hu
+    viajesaero: viajesaero.com
+    volieviaggi: volieviaggi.it
+    voyages24: voyages24.com
+    vuelos-baratos: vuelos-baratos.com
+    wannafly: wannaflynow.com
+PAYMENT_URL:                                            
+    militarytravelers: militarytravelers.militaryfares.com
+db_type: mysqli
+db_port: 3306
+db_flags: 0
+db_creds:
+    main:
+        - 49.12.168.56
+        - ibe_user3a
+        - pwDH:i{s4;4A2Qp
+        - ibe_flight1
+suppliers:
+    airobot:
+        active: false
+        ancillary_token: from-database
+        checkin_token: from-database
+        url: from-database
+    gordian:
+        active: false
+        apikey: from-database
+        url: from-database
+cache_options:
+    cacheDir: CACHE_DIR
+    automaticSerialization: true
+    hashedDirectoryLevel: 1
+    fileLocking: false
+search_cache: true
+info_cache: true
+developers:
+    - 82.209.195.19
+    - 82.209.194.62
+    - 178.124.187.77
+    - 82.209.194.15
+    - 128.140.43.219
+    - 188.245.189.2
+my:
+    - 82.209.195.19
+    - 82.209.194.62

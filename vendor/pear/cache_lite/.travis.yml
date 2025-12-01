@@ -1,0 +1,12 @@
+language: php
+install:
+  - composer install
+
+php:
+  - 7.4
+  - 8.0
+  - 8.1
+  - 8.2
+
+script:
+  - vendor/bin/phpunit tests/
