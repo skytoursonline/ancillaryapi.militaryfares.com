@@ -33,6 +33,7 @@ class output
         'STATUS_0003'       => ['faultcode' => '9_0003','faultstring' => 'Passenger check-in wrong!'],
         'STATUS_0004'       => ['faultcode' => '9_0004','faultstring' => 'Update check-in wrong!'],
         'STATUS_0005'       => ['faultcode' => '9_0005','faultstring' => 'Create check-in wrong!'],
+        'STATUS_0006'       => ['faultcode' => '9_0006','faultstring' => 'Suppliers disable!'],
     ];
 
     public static function view($data = null,$error = false,$param = null)
