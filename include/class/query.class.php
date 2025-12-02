@@ -39,7 +39,7 @@ class query
             'provider'     => $_REQUEST['provider'],
             'curr'         => $curr,
             'lang'         => $lang,
-            'passenger'    => $_REQUEST['passenger'] ?? 1,
+            'passengers'   => $_REQUEST['passengers'] ?? 1,
             'airline_code' => $_REQUEST['airline_code'],
         ];
 
