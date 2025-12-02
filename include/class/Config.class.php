@@ -86,7 +86,7 @@ class Config
             self::$config = array_replace_recursive(self::$config,$suppliers);
         }
         if (DEVEL) {
-            self::$config = [...self::$config,...self::$debug];
+            self::$config = array_replace_recursive(self::$config,self::$debug);
         }
     }
 
