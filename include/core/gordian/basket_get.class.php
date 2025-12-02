@@ -1,11 +1,10 @@
 <?php
-class basket_check
+class basket_get
 {
     use tgordian;
 
     public static function exec()
     {
-_d('TEST');
         $id_order = api::$query->query['id'];
         $basket   = self::get_gordian_basket($id_order);
         if ($trip_id = $basket['trip_id']) {

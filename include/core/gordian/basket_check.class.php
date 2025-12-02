@@ -5,7 +5,6 @@ class basket_check
 
     public static function exec()
     {
-_d('TEST');
         $id_order = api::$query->query['id'];
         $basket   = self::get_gordian_basket($id_order);
         if ($trip_id = $basket['trip_id']) {
