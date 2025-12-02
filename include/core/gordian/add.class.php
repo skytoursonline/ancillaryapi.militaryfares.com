@@ -100,7 +100,8 @@ class add
         }
         $course_to_usd = Currency::get_course(api::$query->query['curr'],'USD');
         OnDemandDb::Execute('main',"INSERT INTO `gordian_basket` (`reservation_id`,`trip_id`,`products`,`price`,`fee`,`amount`,`price_seat`,`fee_seat`,`amount_seat`,`price_baggage`,`fee_baggage`,`amount_baggage`,`currency`,`add_date`,`course_to_usd`) VALUES ($id_order,'$trip_id','".json_encode($products)."',$price,$fee,$amount,$price_seat,$fee_seat,$amount_seat,$price_bagg,$fee_bagg,$amount_bagg,'".api::$query->query['curr']."',NOW(),$course_to_usd)");
-//        $update = json_decode(file_get_contents(HOSTNAME."/?provider=gordian&method=trip_update&id=$id_order"),true);
         gordianCore::$result = 'SUCCESS';
+        return;
+//        $update = file_get_contents('https://'.HOSTNAME."/?provider=gordian&method=trip_update&id=$id_order");
     }
 }
