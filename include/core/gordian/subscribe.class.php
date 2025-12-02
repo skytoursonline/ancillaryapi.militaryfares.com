@@ -5,7 +5,7 @@ class subscribe
 
     public static function exec()
     {
-        $url      = 'http://'.HOSTNAME.'/?provider=gordian&method=notification';
+        $url      = 'https://'.HOSTNAME.'/?provider=gordian&method=notification';
         $event    = api::$query->query['event'];
         $cGordian = new gordianAPIsubscribe($url,$event);
         Logger::save_buffer('gordian subscribe request',$cGordian->xml,'ancillary');
