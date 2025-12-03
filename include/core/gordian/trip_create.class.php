@@ -1,35 +1,4 @@
 <?php
-/*
-provider=gordian&
-method=trip_create&
-lang=en&
-curr=USD&
-adults=2&
-children=0&
-infants=0&
-country=US&
-dep_airport[0][0]=PEK&
-dep_date[0][0]=03SEP&
-dep_time[0][0]=0305&
-airline[0][0]=KL&
-flight_number[0][0]=892&
-arr_airport[0][0]=AMS&
-arr_date[0][0]=03SEP&
-arr_time[0][0]=0730&
-fare_class[0][0]=U&
-fare_basis[0][0]=UM80BDNC&
-dep_airport[0][1]=AMS&
-dep_date[0][1]=03SEP&
-dep_time[0][1]=0945&
-airline[0][1]=KL&
-flight_number[0][1]=1279&
-arr_airport[0][1]=EDI&
-arr_date[0][1]=03SEP&
-arr_time[0][1]=1015&
-fare_class[0][1]=Y&
-fare_basis[0][1]=UM80BDNC
-*/
-
 class trip_create
 {
     use tgordian;

@@ -1,10 +1,4 @@
 <?php
-/*
-provider=gordian&
-method=trip_update&
-id=1000000
-*/
-
 class trip_update
 {
     use tgordian;
