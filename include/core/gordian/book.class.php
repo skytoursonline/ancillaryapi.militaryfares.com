@@ -6,9 +6,17 @@ class book
     public static function exec()
     {
         $id_order = api::$query->query['id'];
-//        file_get_contents('https://'.HOSTNAME."/?provider=gordian&method=basket_check&id=$id_order");
         $basket   = self::get_gordian_basket($id_order);
         $trip_id  = $basket['trip_id'];
+        $cGordian = new gordianAPIbasketcheck($trip_id);
+        Logger::save_buffer('gordian basket check request',$cGordian->xml,'ancillary');
+        $cGordian->request();
+        Logger::save_buffer('gordian basket check response',$cGordian->data,'ancillary');
+        gordianAPIbasketcheckResult::parse($cGordian->data);
+        if (empty(gordianAPIbasketcheckResult::$Result) || isset(gordianAPIbasketcheckResult::$Result['Fault'])) {
+            $error = (empty(gordianAPIbasketcheckResult::$Result)) ? 'BASKET_0001' : gordianAPIbasketcheckResult::$Result['Fault']['faultstring'];
+            output::view($error,true);
+        }
         $cGordian = new gordianAPItripget($trip_id);
         Logger::save_buffer('gordian get request',$cGordian->xml,'ancillary');
         $cGordian->request();
