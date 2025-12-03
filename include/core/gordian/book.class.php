@@ -6,7 +6,7 @@ class book
     public static function exec()
     {
         $id_order = api::$query->query['id'];
-        file_get_contents('https://'.HOSTNAME."/?provider=gordian&method=basket_check&id=$id_order");
+//        file_get_contents('https://'.HOSTNAME."/?provider=gordian&method=basket_check&id=$id_order");
         $basket   = self::get_gordian_basket($id_order);
         $trip_id  = $basket['trip_id'];
         $cGordian = new gordianAPItripget($trip_id);
