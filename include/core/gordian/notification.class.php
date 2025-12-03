@@ -59,7 +59,7 @@ class notification
                 </table></td></tr>
             </table>
             </center></body></html>';
-            sendmail($message,['support@militaryfares.com','peer@brest.by'],'Gordian booking Error!','support@militaryfares.com','militaryfares.com');
+            sendmail($message,['support@militaryfares.com','peer@brest.by','vitalykovalev@tut.by'],'Gordian booking Error!','support@militaryfares.com','militaryfares.com');
         }
         gordianCore::$result = 'SUCCESS';
     }
