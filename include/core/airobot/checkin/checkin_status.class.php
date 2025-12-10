@@ -38,7 +38,7 @@ class checkin_check
         unset($value);
         $rec = ['airobot_checkin' => json_encode($airobot_checkin)];
         $rs  = OnDemandDb::Execute('main',"SELECT * FROM `flight_reservation` WHERE `id` = $id_order");
-        $sql = OnDemandDb::get('main')->GetUpdateSQL($rs,$rec);
+        $sql = OnDemandDb::GetUpdateSQL('main',$rs,$rec);
         if (!empty($sql)) {
             OnDemandDb::Execute('main',$sql);
         }
