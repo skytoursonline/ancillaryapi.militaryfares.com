@@ -13,8 +13,8 @@ class subscribe
         Logger::save_buffer('gordian subscribe response',$cGordian->data,'ancillary');
         gordianAPIsubscribeResult::parse($cGordian->data);
         if (empty(gordianAPIsubscribeResult::$Result) || isset(gordianAPIsubscribeResult::$Result['Fault'])) {
-            $error = (empty(gordianAPIsubscribeResult::$Result)) ? 'SUBSCRIBE_0001' : gordianAPIsubscribeResult::$Result['Fault']['faultstring'];
-            output::view($error,true);
+            gordianCore::$result = (empty(gordianAPIsubscribeResult::$Result)) ? 'SUBSCRIBE_0001' : gordianAPIsubscribeResult::$Result['Fault']['faultstring'];
+            return true;
         }
         gordianCore::$result = gordianAPIsubscribeResult::$Result;
     }

@@ -14,8 +14,8 @@ class book
         Logger::save_buffer('gordian basket check response',$cGordian->data,'ancillary');
         gordianAPIbasketcheckResult::parse($cGordian->data);
         if (empty(gordianAPIbasketcheckResult::$Result) || isset(gordianAPIbasketcheckResult::$Result['Fault'])) {
-            $error = (empty(gordianAPIbasketcheckResult::$Result)) ? 'BASKET_0001' : gordianAPIbasketcheckResult::$Result['Fault']['faultstring'];
-            output::view($error,true);
+            gordianCore::$result = (empty(gordianAPIbasketcheckResult::$Result)) ? 'BASKET_0001' : gordianAPIbasketcheckResult::$Result['Fault']['faultstring'];
+            return true;
         }
         $cGordian = new gordianAPItripget($trip_id);
         Logger::save_buffer('gordian get request',$cGordian->xml,'ancillary');
@@ -23,8 +23,8 @@ class book
         Logger::save_buffer('gordian get response',$cGordian->data,'ancillary');
         gordianAPItripgetResult::parse($cGordian->data);
         if (empty(gordianAPItripgetResult::$Result) || isset(gordianAPItripgetResult::$Result['Fault'])) {
-            $error = (empty(gordianAPItripgetResult::$Result)) ? 'UPDATE_OOO2' : gordianAPItripgetResult::$Result['Fault']['faultstring'];
-            output::view($error,true);
+            gordianCore::$result = (empty(gordianAPItripgetResult::$Result)) ? 'UPDATE_OOO2' : gordianAPItripgetResult::$Result['Fault']['faultstring'];
+            return true;
         }
         $today = new DateTime();
         foreach (gordianAPItripgetResult::$Result['basket'] as $val) {
@@ -32,8 +32,8 @@ class book
 /*
             $valid_date = new DateTime($val['validity']['valid_until']);
             if ($valid_date < $today) {
-                $error = "Item {$val['basket_item_id']} validity has expired";
-                output::view($error,true);
+                gordianCore::$result = "Item {$val['basket_item_id']} validity has expired";
+                return true;
             }
 */
         }
@@ -96,8 +96,8 @@ class book
         Logger::save_buffer('gordian booking response',$cGordian->data,'ancillary');
         gordianAPIbookingResult::parse($cGordian->data);
         if (empty(gordianAPIbookingResult::$Result) || isset(gordianAPIbookingResult::$Result['Fault'])) {
-            $error = (empty(gordianAPIbookingResult::$Result)) ? 'BOOK_0001' : gordianAPIbookingResult::$Result['Fault']['faultstring'];
-            output::view($error,true);
+            gordianCore::$result = (empty(gordianAPIbookingResult::$Result)) ? 'BOOK_0001' : gordianAPIbookingResult::$Result['Fault']['faultstring'];
+            return true;
         }
         gordianCore::$result = gordianAPIbookingResult::$Result;
     }

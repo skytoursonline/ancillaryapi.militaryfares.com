@@ -30,7 +30,6 @@ class trip_update
         if (empty(gordianAPIbasketaddResult::$Result) || isset(gordianAPIbasketaddResult::$Result['Fault'])) {
             gordianCore::$result = (empty(gordianAPIbasketaddResult::$Result)) ? 'UPDATE_OOO1' : gordianAPIbasketaddResult::$Result['Fault']['faultstring'];
             return true;
-//            output::view($error,true);
         }
         $trip_state_hash = gordianAPIbasketaddResult::$Result['trip_state_hash'];
         OnDemandDb::Execute('main',"UPDATE `gordian_basket` SET `trip_state_hash` = '$trip_state_hash' WHERE `reservation_id` = $id_order");
@@ -43,7 +42,6 @@ class trip_update
         if (empty(gordianAPItripgetResult::$Result) || isset(gordianAPItripgetResult::$Result['Fault'])) {
             gordianCore::$result = (empty(gordianAPItripgetResult::$Result)) ? 'UPDATE_OOO2' : gordianAPItripgetResult::$Result['Fault']['faultstring'];
             return true;
-//            output::view($error,true);
         }
         $passengers = gordianAPItripgetResult::$Result['passengers'];
 
@@ -57,7 +55,7 @@ class trip_update
                 $v3[] = $val;
             }
         }
-        $passengers = [...$v1,...$v2,...$v3]; // array_merge($v1,$v2,$v3);
+        $passengers = [...$v1,...$v2,...$v3];
         unset($v1,$v2,$v3);
 
         $reservation = self::get_reservation($id_order);
@@ -98,9 +96,7 @@ class trip_update
         if (empty(gordianAPItripupdateResult::$Result) || isset(gordianAPItripupdateResult::$Result['Fault'])) {
             gordianCore::$result = (empty(gordianAPItripupdateResult::$Result)) ? 'UPDATE_OOO3' : gordianAPItripupdateResult::$Result['Fault']['faultstring'];
             return true;
-//            output::view($error,true);
         }
         gordianCore::$result = gordianAPItripupdateResult::$Result;
-        return false;
     }
 }

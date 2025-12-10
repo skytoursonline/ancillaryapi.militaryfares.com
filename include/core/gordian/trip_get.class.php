@@ -14,8 +14,8 @@ class trip_get
         Logger::save_buffer('gordian get response',$cGordian->data,'ancillary');
         gordianAPItripgetResult::parse($cGordian->data);
         if (empty(gordianAPItripgetResult::$Result) || isset(gordianAPItripgetResult::$Result['Fault'])) {
-            $error = (empty(gordianAPItripgetResult::$Result)) ? 'UPDATE_OOO2' : gordianAPItripgetResult::$Result['Fault']['faultstring'];
-            output::view($error,true);
+            gordianCore::$result = (empty(gordianAPItripgetResult::$Result)) ? 'UPDATE_OOO2' : gordianAPItripgetResult::$Result['Fault']['faultstring'];
+            return true;
         }
         gordianCore::$result = gordianAPItripgetResult::$Result;
     }

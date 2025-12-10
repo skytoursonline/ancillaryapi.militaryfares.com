@@ -79,8 +79,8 @@ class trip_create
             Logger::save_buffer('gordian create response',$cGordian->data,'ancillary');
             gordianAPItripcreateResult::parse($cGordian->data);
             if (empty(gordianAPItripcreateResult::$Result) || isset(gordianAPItripcreateResult::$Result['Fault'])) {
-                $error = (empty(gordianAPItripcreateResult::$Result)) ? 'CREATE_0002' : gordianAPItripcreateResult::$Result['Fault']['faultstring'];
-                output::view($error,true);
+                gordianCore::$result = (empty(gordianAPItripcreateResult::$Result)) ? 'CREATE_0002' : gordianAPItripcreateResult::$Result['Fault']['faultstring'];
+                return true;
             }
             $result    = gordianAPItripcreateResult::$Result;
             $search_id = $result['search_id'];
@@ -94,14 +94,13 @@ class trip_create
                 Logger::save_buffer('gordian search response',$cGordian->data,'ancillary');
                 gordianAPIsearchgetResult::parse($cGordian->data,$taxes);
                 if (empty(gordianAPIsearchgetResult::$Result) || isset(gordianAPIsearchgetResult::$Result['Fault'])) {
-                    $error = (empty(gordianAPIsearchgetResult::$Result)) ? 'CREATE_0003' : gordianAPIsearchgetResult::$Result['Fault']['faultstring'];
-                    output::view($error,true);
+                    gordianCore::$result = (empty(gordianAPIsearchgetResult::$Result)) ? 'CREATE_0003' : gordianAPIsearchgetResult::$Result['Fault']['faultstring'];
+                    return true;
                 }
                 gordianCore::$result = gordianAPIsearchgetResult::$Result;
                 $status = gordianCore::$result['status'];
                 $step++;
                 if ($step > 20) {
-//                    output::view('CREATE_0004',true);
                     break;
                 }
                 sleep(1);

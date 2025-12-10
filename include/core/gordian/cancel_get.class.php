@@ -14,8 +14,8 @@ class cancel_get
         Logger::save_buffer('gordian cancel get response',$cGordian->data,'ancillary');
         gordianAPIcancelgetResult::parse($cGordian->data);
         if (empty(gordianAPIcancelgetResult::$Result) || isset(gordianAPIcancelgetResult::$Result['Fault'])) {
-            $error = (empty(gordianAPIcancelgetResult::$Result)) ? 'CANCEL_0003' : gordianAPIcancelgetResult::$Result['Fault']['faultstring'];
-            output::view($error,true);
+            gordianCore::$result = (empty(gordianAPIcancelgetResult::$Result)) ? 'CANCEL_0003' : gordianAPIcancelgetResult::$Result['Fault']['faultstring'];
+            return true;
         }
         gordianCore::$result = gordianAPIcancelgetResult::$Result;
     }

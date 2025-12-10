@@ -14,8 +14,8 @@ class cancel_confirm
         Logger::save_buffer('gordian cancel confirm response',$cGordian->data,'ancillary');
         gordianAPIcancelconfirmResult::parse($cGordian->data);
         if (empty(gordianAPIcancelconfirmResult::$Result) || isset(gordianAPIcancelconfirmResult::$Result['Fault'])) {
-            $error = (empty(gordianAPIcancelconfirmResult::$Result)) ? 'CANCEL_0002' : gordianAPIcancelconfirmResult::$Result['Fault']['faultstring'];
-            output::view($error,true);
+            gordianCore::$result = (empty(gordianAPIcancelconfirmResult::$Result)) ? 'CANCEL_0002' : gordianAPIcancelconfirmResult::$Result['Fault']['faultstring'];
+            return true;
         }
         gordianCore::$result = gordianAPIcancelconfirmResult::$Result;
     }
