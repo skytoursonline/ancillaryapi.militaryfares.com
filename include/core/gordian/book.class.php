@@ -20,7 +20,8 @@ class book
         $i = 0;
         do {
             if ($i > 1) {
-                return true;
+                break;
+//                return true;
             }
             sleep(30);
             $cGordian = new gordianAPIbasketget($trip_id);
