@@ -17,6 +17,28 @@ class book
             gordianCore::$result = (empty(gordianAPIbasketcheckResult::$Result)) ? 'BASKET_0001' : gordianAPIbasketcheckResult::$Result['Fault']['faultstring'];
             return true;
         }
+        $i = 0;
+        do {
+            if ($i > 1) {
+                return true;
+            }
+            sleep(30);
+            $cGordian = new gordianAPIbasketget($trip_id);
+            Logger::save_buffer('gordian basket get request',$cGordian->xml,'ancillary');
+            $cGordian->request();
+            Logger::save_buffer('gordian basket get response',$cGordian->data,'ancillary');
+            gordianAPIbasketgetResult::parse($cGordian->data);
+            if (empty(gordianAPIbasketgetResult::$Result) || isset(gordianAPIbasketgetResult::$Result['Fault'])) {
+                gordianCore::$result = (empty(gordianAPIbasketgetResult::$Result)) ? 'BASKET_0003' : gordianAPIbasketgetResult::$Result['Fault']['faultstring'];
+                return true;
+            }
+            $valid = true;
+            foreach (gordianAPIbasketgetResult::$Result['basket'] as $v) {
+                $valid = $valid & (($v['validity']['status'] === 'valid') ? true : false);
+            }
+            $i++;
+        } while (!$valid);
+
         $cGordian = new gordianAPItripget($trip_id);
         Logger::save_buffer('gordian get request',$cGordian->xml,'ancillary');
         $cGordian->request();
@@ -29,13 +51,6 @@ class book
         $today = new DateTime();
         foreach (gordianAPItripgetResult::$Result['basket'] as $val) {
             $tickets[] = $val['ticket_id'];
-/*
-            $valid_date = new DateTime($val['validity']['valid_until']);
-            if ($valid_date < $today) {
-                gordianCore::$result = "Item {$val['basket_item_id']} validity has expired";
-                return true;
-            }
-*/
         }
         $tickets    = array_unique($tickets);
         $passengers = gordianAPItripgetResult::$Result['passengers'];

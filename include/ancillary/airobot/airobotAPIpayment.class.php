@@ -10,7 +10,7 @@ class airobotAPIpayment extends airobotAPI
 
     public function __construct($request_id,$journeys,$travelers)
     {
-        $this->journeys  = $journeys;
+        $this->journeys    = $journeys;
         $this->travelers   = $travelers;
         $this->param       = 'key';
         $this->token       = Config::get('suppliers')[api::$query->query['provider']]['ancillary_token'];
