@@ -26,7 +26,11 @@ class notification
         $sql    = "UPDATE `gordian_basket` SET ";
         $orders = json_encode($post['trip']['orders']);
         $event  = $post['last_action']['last_event'] ?? $post['last_action'];
-        if (in_array($event['status'],['success','completed'])) {
+        if (!empty($post['last_action']['errors'])) {
+            $error = $post['last_action']['errors'][0]['message'];
+            $err[] = "$error<br>";
+            $sql   = "`error` = '$error',";
+        } elseif (in_array($event['status'],['success','completed'])) {
             $sql .= "`confirmed` = 1,";
         } elseif (in_array($event['status'],['failure'])) {
             $error = $event['event'] ?? $event['name'];
