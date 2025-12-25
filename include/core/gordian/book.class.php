@@ -23,7 +23,7 @@ class book
                 break;
 //                return true;
             }
-            sleep(30);
+            sleep(20);
             $cGordian = new gordianAPIbasketget($trip_id);
             Logger::save_buffer('gordian basket get request',$cGordian->xml,'ancillary');
             $cGordian->request();

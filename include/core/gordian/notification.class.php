@@ -29,13 +29,13 @@ class notification
         if (!empty($post['last_action']['errors'])) {
             $error = $post['last_action']['errors'][0]['message'];
             $err[] = "$error<br>";
-            $sql   = "`error` = '$error',";
+            $sql  .= "`error` = '$error',";
         } elseif (in_array($event['status'],['success','completed'])) {
             $sql .= "`confirmed` = 1,";
         } elseif (in_array($event['status'],['failure'])) {
             $error = $event['event'] ?? $event['name'];
             $err[] = "$error<br>";
-            $sql   = "`error` = '$error',";
+            $sql  .= "`error` = '$error',";
         }
         $sql .= "`confirm_date` = NOW(),`orders` = '$orders' WHERE `trip_id` = '$trip_id'";
         OnDemandDb::Execute('main',$sql);
